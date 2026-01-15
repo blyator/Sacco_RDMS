@@ -11,7 +11,7 @@ db.insert("members", {"member_id": 1, "name": "Mike"})
 db.insert("members", {"member_id": 2, "name": "kip"})
 
 
-print("Update kip -> Billy")
-db.update("members", {"name": "Billy"}, where={"name": "kip"})
+print("\nDelete Mike")
+db.delete("members", where={"name": "Mike"})
 for r in db.select("members"):
     print(r)

@@ -87,3 +87,26 @@ class Table:
                 updated_count += 1
 
         return updated_count
+    
+    def delete(self, where=None):
+
+        to_delete = []
+        for row in self.rows:
+            match = True
+            if where:
+                for col, val in where.items():
+                    if row.get(col) != val:
+                        match = False
+                        break
+            if match:
+                to_delete.append(row)
+
+        for row in to_delete:
+            self.rows.remove(row)
+            # Remove from indexes
+            if self.primary_key:
+                self.pk_index.pop(row[self.primary_key], None)
+            for key in self.unique_keys:
+                self.unique_indexes[key].pop(row[key], None)
+
+        return len(to_delete)

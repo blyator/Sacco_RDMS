@@ -26,3 +26,7 @@ class Database:
     def update(self, table_name, updates, where=None):
         table = self.get_table(table_name)
         return table.update(updates, where=where)
+    
+    def delete(self, table_name, where=None):
+        table = self.get_table(table_name)
+        return table.delete(where=where)
