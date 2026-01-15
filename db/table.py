@@ -48,3 +48,42 @@ class Table:
                     result.append(row.copy())
 
         return result
+    
+    def update(self, updates, where=None):
+
+        updated_count = 0
+
+        for row in self.rows:
+            match = True
+            if where:
+                for col, val in where.items():
+                    if row.get(col) != val:
+                        match = False
+                        break
+            if match:
+                # Enforce primary key update
+                if self.primary_key and self.primary_key in updates:
+                    new_pk = updates[self.primary_key]
+                    old_pk = row[self.primary_key]
+                    if new_pk != old_pk and new_pk in self.pk_index:
+                        raise ValueError(f"Duplicate primary key '{new_pk}' in table '{self.name}'")
+                    # Update index
+                    self.pk_index.pop(old_pk)
+                    self.pk_index[new_pk] = row
+
+                # Update unique keys
+                for key in self.unique_keys:
+                    if key in updates:
+                        new_val = updates[key]
+                        old_val = row[key]
+                        if new_val != old_val and new_val in self.unique_indexes[key]:
+                            raise ValueError(f"Duplicate unique key '{new_val}' in table '{self.name}'")
+                        self.unique_indexes[key].pop(old_val)
+                        self.unique_indexes[key][new_val] = row
+
+                # Apply updates
+                for col, val in updates.items():
+                    row[col] = val
+                updated_count += 1
+
+        return updated_count

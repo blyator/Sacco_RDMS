@@ -22,3 +22,7 @@ class Database:
     def select(self, table_name, columns=None, where=None):
         table = self.get_table(table_name)
         return table.select(columns=columns, where=where)
+    
+    def update(self, table_name, updates, where=None):
+        table = self.get_table(table_name)
+        return table.update(updates, where=where)

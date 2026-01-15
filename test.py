@@ -11,16 +11,7 @@ db.insert("members", {"member_id": 1, "name": "Mike"})
 db.insert("members", {"member_id": 2, "name": "kip"})
 
 
-print("All members:")
+print("Update kip -> Billy")
+db.update("members", {"name": "Billy"}, where={"name": "kip"})
 for r in db.select("members"):
-    print(r)
-
-
-print("\nWhere name = 'Mike':")
-for r in db.select("members", where={"name": "Mike"}):
-    print(r)
-
-
-print("\nOnly names:")
-for r in db.select("members", columns=["name"]):
     print(r)
