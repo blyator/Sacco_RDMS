@@ -29,7 +29,7 @@ const Dashboard = ({ statCards, members, logs, fetchData }) => {
           <div className="card-body p-0">
              <div className="p-4 border-b border-base-200 flex items-center justify-between bg-base-200/30">
                 <h2 className="card-title text-base font-black uppercase tracking-tight flex items-center gap-2">
-                   <TrendingUp className="h-5 w-5 text-primary" /> Recent Members
+                   <TrendingUp className="h-5 w-5 text-accent" /> Recent Members
                 </h2>
                 <button onClick={fetchData} className="btn btn-ghost btn-xs">Refresh</button>
              </div>
@@ -45,7 +45,7 @@ const Dashboard = ({ statCards, members, logs, fetchData }) => {
                   <tbody>
                      {members.slice(0, 5).map(m => (
                        <tr key={m.member_id}>
-                          <th className="font-mono text-primary">#{m.member_id}</th>
+                          <th className="font-mono text-accent"># {m.member_id}</th>
                           <td className="font-bold uppercase">{m.name}</td>
                           <td className="opacity-70">{m.national_id}</td>
                        </tr>

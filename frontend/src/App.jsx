@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { Users, ShoppingCart, PiggyBank, Terminal } from 'lucide-react';
 import './App.css';
 
+// Components
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import Dashboard from './components/Dashboard';
@@ -138,7 +140,7 @@ function App() {
       value: members.length,
       icon: Users,
       description: "Active registered members",
-      color: "text-primary",
+      color: "text-accent",
     },
     {
       title: "Active Accounts",
@@ -150,16 +152,16 @@ function App() {
     {
       title: "Total Holdings",
       value: `Kes ${totalFunds.toLocaleString()}`,
-      icon: DollarSign,
+      icon: PiggyBank,
       description: "Total Sacco revenue",
       color: "text-accent",
     },
     {
       title: "System Logs",
       value: logs.length,
-      icon: CommandLine,
+      icon: Terminal,
       description: "Recorded activities",
-      color: "text-info",
+      color: "text-accent",
     },
   ];
 
