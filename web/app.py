@@ -3,8 +3,10 @@ from db.instance import db
 from .routes.members import members_bp, set_db as set_members_db
 from .routes.accounts import accounts_bp, set_db as set_accounts_db
 from .routes.transactions import transactions_bp, set_db as set_transactions_db
+from flask_cors import CORS
 
 app = Flask(__name__)
+CORS(app)
 
 # Inject DB 
 set_members_db(db)
