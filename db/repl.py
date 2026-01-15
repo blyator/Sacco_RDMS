@@ -90,6 +90,20 @@ while True:
             db.update(table, {set_key: set_val}, where={where_key: where_val})
             print(f"{table} row(s) updated successfully")
 
+        # ------------------- DELETE -------------------
+        elif cmd.upper().startswith("DELETE FROM"):
+                m = re.match(r"DELETE FROM (\w+)\s+WHERE\s+(.*)", cmd, re.I)
+                if not m:
+                    print("Invalid DELETE syntax")
+                    continue
+                table, where_clause = m.groups()
+                key, val = [x.strip() for x in where_clause.split("=")]
+                val = val.strip("'")
+                if val.isdigit():
+                    val = int(val)
+                deleted_count = db.delete(table, where={key: val})
+                print(f"{deleted_count} row(s) deleted from {table}")
+
         else:
             print("Unknown command")
 
