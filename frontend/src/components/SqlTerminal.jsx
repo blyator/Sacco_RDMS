@@ -62,7 +62,7 @@ const SqlTerminal = ({ sqlQuery, setSqlQuery, sqlResult, handleExecuteSQL }) => 
                 <ul className="menu bg-base-200 w-full rounded-box">
                    <li><a onClick={() => setSqlQuery('SELECT * FROM members')} className="text-xs font-bold">Get All Members</a></li>
                    <li><a onClick={() => setSqlQuery('SELECT * FROM accounts')} className="text-xs font-bold">Get All Accounts</a></li>
-                   <li><a onClick={() => setSqlQuery("INSERT INTO members VALUES (99, 'NEW USER', 'ID001')")} className="text-xs font-bold">Add Member SQL</a></li>
+                   <li><a onClick={() => setSqlQuery("INSERT INTO members VALUES (1, 'Billy', 'ID001')")} className="text-xs font-bold">Add Member SQL</a></li>
                 </ul>
                 <div className="mt-auto pt-4 border-t border-base-200">
                    <p className="text-[10px] opacity-50 font-medium leading-relaxed">Type direct SQL commands to interact with the custom RDMS engine.</p>
