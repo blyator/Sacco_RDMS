@@ -27,5 +27,24 @@ class Table:
             if val in self.unique_indexes[key]:
                 raise ValueError(f"Duplicate unique key '{val}' in table '{self.name}'")
             self.unique_indexes[key][val] = row
-            
+
         self.rows.append(row)
+
+    def select(self, columns=None, where=None):
+
+        result = []
+
+        for row in self.rows:
+            match = True
+            if where:
+                for col, val in where.items():
+                    if row.get(col) != val:
+                        match = False
+                        break
+            if match:
+                if columns:
+                    result.append({col: row[col] for col in columns})
+                else:
+                    result.append(row.copy())
+
+        return result

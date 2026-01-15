@@ -18,3 +18,7 @@ class Database:
     def insert(self, table_name, row):
         table = self.get_table(table_name)
         table.insert(row)
+
+    def select(self, table_name, columns=None, where=None):
+        table = self.get_table(table_name)
+        return table.select(columns=columns, where=where)

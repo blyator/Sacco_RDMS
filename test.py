@@ -7,17 +7,20 @@ db.create_table(
     primary_key="member_id"
 )
 
-# Insert rows
 db.insert("members", {"member_id": 1, "name": "Mike"})
-db.insert("members", {"member_id": 2, "name": "Kip"})
+db.insert("members", {"member_id": 2, "name": "kip"})
 
-# Should fail
-try:
-    db.insert("members", {"member_id": 1, "name": "Billy"})
-except ValueError as e:
-    print("Error:", e)
 
-# Print rows
-table = db.get_table("members")
-for r in table.rows:
+print("All members:")
+for r in db.select("members"):
+    print(r)
+
+
+print("\nWhere name = 'Mike':")
+for r in db.select("members", where={"name": "Mike"}):
+    print(r)
+
+
+print("\nOnly names:")
+for r in db.select("members", columns=["name"]):
     print(r)
