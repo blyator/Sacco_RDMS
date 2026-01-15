@@ -14,3 +14,7 @@ class Database:
         if name not in self.tables:
             raise TableNotFoundError(f"Table '{name}' not found")
         return self.tables[name]
+
+    def insert(self, table_name, row):
+        table = self.get_table(table_name)
+        table.insert(row)

@@ -7,4 +7,17 @@ db.create_table(
     primary_key="member_id"
 )
 
-print(db.tables.keys())
+# Insert rows
+db.insert("members", {"member_id": 1, "name": "Mike"})
+db.insert("members", {"member_id": 2, "name": "Kip"})
+
+# Should fail
+try:
+    db.insert("members", {"member_id": 1, "name": "Billy"})
+except ValueError as e:
+    print("Error:", e)
+
+# Print rows
+table = db.get_table("members")
+for r in table.rows:
+    print(r)
