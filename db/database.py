@@ -30,3 +30,28 @@ class Database:
     def delete(self, table_name, where=None):
         table = self.get_table(table_name)
         return table.delete(where=where)
+    
+# Method to perform JOIN operations
+    def join(self, left_table_name, right_table_name, left_key, right_key, columns=None):
+
+        left_table = self.get_table(left_table_name)
+        right_table = self.get_table(right_table_name)
+
+        result = []
+
+        # Build hash map for efficiency
+        right_index = {}
+        for row in right_table.rows:
+            key = row[right_key]
+            right_index.setdefault(key, []).append(row)
+
+        for l_row in left_table.rows:
+            l_value = l_row[left_key]
+            r_rows = right_index.get(l_value, [])
+            for r_row in r_rows:
+                combined = {**l_row, **r_row}
+                if columns:
+                    result.append({col: combined[col] for col in columns})
+                else:
+                    result.append(combined)
+        return result
