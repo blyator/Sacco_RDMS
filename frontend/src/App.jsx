@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { Users, ShoppingCart, PiggyBank, Terminal } from 'lucide-react';
+import { Users, PiggyBank, Terminal, CreditCard } from 'lucide-react';
 import './App.css';
 
 // Components
@@ -145,9 +145,9 @@ function App() {
     {
       title: "Active Accounts",
       value: accounts.length,
-      icon: ShoppingCart,
+      icon: CreditCard,
       description: "Savings accounts opened",
-      color: "text-secondary",
+      color: "text-accent",
     },
     {
       title: "Total Holdings",
