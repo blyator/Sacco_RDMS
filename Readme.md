@@ -34,7 +34,7 @@ The system impliments core RDBMS concepts like table schemas, CRUD operations, i
 
 ### 1. Clone Repository
 ```bash
-git clone <repository-url>
+git clone git@github.com:blyator/Sacco_RDMS.git
 cd sacco-rdms
 ```
 
@@ -66,6 +66,11 @@ python -c "from db.database import Database; print('Database import successful')
 # Test Flask app
 python -m web.app  # Should start server on port 5000
 ```
+
+## Deployment
+
+### Live Application
+The application is deployed and accessible at: [Sacco-RDMS](https://blyator.qzz.io/sacco-rdms)
 
 ## Database Schema
 
