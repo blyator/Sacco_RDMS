@@ -9,12 +9,12 @@ const SqlTerminal = ({ sqlQuery, setSqlQuery, sqlResult, handleExecuteSQL }) => 
                 <h3 className="text-xs font-black opacity-40 uppercase tracking-widest mb-2">Execute Command</h3>
                 <textarea 
                   className="textarea textarea-bordered font-mono w-full h-32 text-lg bg-base-200 text-base-content focus:outline-primary"
-                  placeholder="SELECT * FROM members WHERE member_id = 101"
+                  placeholder="SELECT * FROM members"
                   value={sqlQuery}
                   onChange={e => setSqlQuery(e.target.value)}
                 />
                 <div className="card-actions justify-end mt-2">
-                   <button className="btn btn-primary px-8 font-black uppercase tracking-wider" onClick={handleExecuteSQL}>Execute</button>
+                   <button className="btn btn-success px-8 font-black uppercase tracking-wider" onClick={handleExecuteSQL}>Execute</button>
                 </div>
              </div>
           </div>
@@ -30,7 +30,7 @@ const SqlTerminal = ({ sqlQuery, setSqlQuery, sqlResult, handleExecuteSQL }) => 
                    </div>
                 </div>
                 <div className="p-6 overflow-auto font-mono text-sm min-h-[300px] bg-base-100">
-                   {!sqlResult && <span className="opacity-50 italic">// Ready for command...</span>}
+                   {!sqlResult && <span className="opacity-50 italic">Execute a command...</span>}
                    {sqlResult && sqlResult.status === 'error' && <div className="text-error font-bold">ERROR: {sqlResult.data}</div>}
                    {sqlResult && sqlResult.status === 'success' && (
                       Array.isArray(sqlResult.data) ? (
@@ -58,7 +58,7 @@ const SqlTerminal = ({ sqlQuery, setSqlQuery, sqlResult, handleExecuteSQL }) => 
        <div className="lg:col-span-1">
           <div className="card bg-base-100 shadow-xl border border-base-200 h-full">
              <div className="card-body">
-                <h3 className="card-title text-sm font-black opacity-40 uppercase tracking-widest mb-4 border-b border-base-200 pb-2">Templates</h3>
+                <h3 className="card-title text-sm font-black opacity-40 uppercase tracking-widest mb-4 border-b border-base-200 pb-2">Quick commands</h3>
                 <ul className="menu bg-base-200 w-full rounded-box">
                    <li><a onClick={() => setSqlQuery('SELECT * FROM members')} className="text-xs font-bold">Get All Members</a></li>
                    <li><a onClick={() => setSqlQuery('SELECT * FROM accounts')} className="text-xs font-bold">Get All Accounts</a></li>
