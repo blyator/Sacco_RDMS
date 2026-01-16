@@ -12,8 +12,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
     <aside className="w-64 bg-base-100 shadow-xl z-20 flex flex-col border-r border-base-300">
       <div className="p-6 border-b border-base-300">
         <a className="flex items-center gap-3 text-2xl font-black tracking-tight text-base-content no-underline">
-          <span className="bg-primary text-primary-content w-10 h-10 rounded-lg flex items-center justify-center text-lg shadow-sm font-black">S</span>
-          SACCO<span className="text-primary">RDMS</span>
+          SACCO<span className="text-accent">RDMS</span>
         </a>
       </div>
       
@@ -27,7 +26,6 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
               <Home className="w-5 h-5" /> Dashboard
             </a>
           </li>
-          <div className="divider my-1 opacity-50">REGISTRY</div>
           <li>
             <a 
               onClick={() => setActiveTab('MEMBERS')} 
@@ -44,7 +42,6 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
               <CreditCard className="w-5 h-5" /> Accounts
             </a>
           </li>
-          <div className="divider my-1 opacity-50">SYSTEM</div>
           <li>
             <a 
               onClick={() => setActiveTab('SQL')} 
@@ -66,7 +63,7 @@ const Sidebar = ({ activeTab, setActiveTab }) => {
 
       <div className="p-4 bg-base-200 m-4 rounded-xl border border-base-300">
          <div className="text-[10px] opacity-50 font-black uppercase mb-1">Current User</div>
-         <div className="font-bold text-sm">Administrator</div>
+         <div className="font-bold text-sm">Admin</div>
       </div>
     </aside>
   );
