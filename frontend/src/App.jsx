@@ -3,7 +3,6 @@ import toast, { Toaster } from 'react-hot-toast';
 import { Users, PiggyBank, Terminal, CreditCard } from 'lucide-react';
 import './App.css';
 
-// Components
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import Dashboard from './components/Dashboard';
@@ -17,6 +16,7 @@ const API_BASE = import.meta.env.VITE_API_BASE
 
 function App() {
   const [activeTab, setActiveTab] = useState('DASHBOARD');
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [members, setMembers] = useState([]);
   const [accounts, setAccounts] = useState([]);
   const [logs, setLogs] = useState([]);
@@ -170,19 +170,35 @@ function App() {
       
       <Toaster position="top-right" reverseOrder={false} />
       
-      <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+      {isSidebarOpen && (
+        <div 
+          className="fixed inset-0 bg-black/50 z-20 md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
+
+      <Sidebar 
+        activeTab={activeTab} 
+        setActiveTab={(tab) => {
+          setActiveTab(tab);
+          setIsSidebarOpen(false);
+        }} 
+        isSidebarOpen={isSidebarOpen}
+        setIsSidebarOpen={setIsSidebarOpen}
+      />
 
 
-      <main className="flex-1 flex flex-col overflow-hidden relative">
+      <main className="flex-1 flex flex-col overflow-hidden relative w-full">
         
         <TopBar 
           activeTab={activeTab} 
           fetchData={fetchData} 
           isLoading={isLoading} 
+          setIsSidebarOpen={setIsSidebarOpen}
         />
 
 
-        <div className="flex-1 overflow-auto p-8">
+        <div className="flex-1 overflow-auto p-4 md:p-8">
           
           {activeTab === 'DASHBOARD' && (
             <Dashboard 

@@ -4,16 +4,25 @@ import {
   UserPlus, 
   CreditCard, 
   Code, 
-  History 
+  History,
+  X
 } from 'lucide-react';
 
-const Sidebar = ({ activeTab, setActiveTab }) => {
+const Sidebar = ({ activeTab, setActiveTab, isSidebarOpen, setIsSidebarOpen }) => {
   return (
-    <aside className="w-64 bg-base-100 shadow-xl z-20 flex flex-col border-r border-base-300">
-      <div className="p-6 border-b border-base-300">
+    <aside 
+      className={`fixed inset-y-0 left-0 z-30 w-64 bg-base-100 shadow-xl flex flex-col border-r border-base-300 transform transition-transform duration-300 ease-in-out md:relative md:translate-x-0 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}
+    >
+      <div className="p-6 border-b border-base-300 flex items-center justify-between">
         <a className="flex items-center gap-3 text-2xl font-black tracking-tight text-base-content no-underline">
           SACCO<span className="text-accent">RDMS</span>
         </a>
+        <button 
+          className="btn btn-ghost btn-xs btn-square md:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        >
+          <X className="w-5 h-5" />
+        </button>
       </div>
       
       <nav className="flex-1 p-4">
